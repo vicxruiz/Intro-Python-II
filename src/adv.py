@@ -34,15 +34,13 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
-victor = Player(room['outside'])
-print(victor.current_room.name)
+victor = Player('Victor', room['outside'])
 
 # Write a loop that:
 #
@@ -54,3 +52,88 @@ print(victor.current_room.name)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+loop_is_running = True
+
+while loop_is_running:
+    print(victor.current_room.name)
+    print(victor.current_room.description)
+    # User prompt
+    user_input = input("\nEnter: ").lower()
+
+    if user_input == 'q':
+        print("Thank you for playing!")
+        break
+
+    # Error check
+    print(len(user_input))
+    if len(user_input) > 2 or len(user_input) < 1:
+        print("I don't understand that.")
+        continue
+
+    if user_input == 'n':
+        if victor.current_room.name == "Outside Cave Entrance":
+            victor.current_room = room['foyer']
+            continue
+        if victor.current_room.name == "Foyer":
+            victor.current_room = room['overlook']
+            continue
+        if victor.current_room.name == "Grand Overlook":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Narrow Passage":
+            victor.current_room = room['treasure']
+            continue
+        if victor.current_room.name == "Treasure Chamber":
+            print("Unable to move to desired location. Please try again.")
+            continue
+    if user_input == 's':
+        if victor.current_room.name == "Outside Cave Entrance":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Foyer":
+            victor.current_room = room['outside']
+            continue
+        if victor.current_room.name == "Grand Overlook":
+            victor.current_room = room['foyer']
+            continue
+        if victor.current_room.name == "Narrow Passage":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Treasure Chamber":
+            victor.current_room = room['narrow']
+            continue
+    if user_input == 'e':
+        if victor.current_room.name == "Outside Cave Entrance":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Foyer":
+            victor.current_room = room['narrow']
+            continue
+        if victor.current_room.name == "Grand Overlook":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Narrow Passage":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Treasure Chamber":
+            print("Unable to move to desired location. Please try again.")
+            continue
+    if user_input == 'w':
+        if victor.current_room.name == "Outside Cave Entrance":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Foyer":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Grand Overlook":
+            print("Unable to move to desired location. Please try again.")
+            continue
+        if victor.current_room.name == "Narrow Passage":
+            victor.current_room = room['foyer']
+            continue
+        if victor.current_room.name == "Treasure Chamber":
+            print("Unable to move to desired location. Please try again.")
+            continue
+
+
