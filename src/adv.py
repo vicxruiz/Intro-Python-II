@@ -93,6 +93,13 @@ while loop_is_running:
         if user_input[0] == 'q':
             print("Thank you for playing!")
             break
+        if user_input[0] == 'inventory' or user_input[0] == 'i':
+            if len(victor.items) == 0:
+                print("No items")
+            else:
+                print("Your items:\n")
+                for i in victor.items:
+                    print(i.name)
         if user_input == 'n':
             if victor.current_room.name == "Outside Cave Entrance":
                 victor.current_room = room['foyer']
